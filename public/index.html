@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opções de Pagamento </title>
+    <title>Opções de Pagamento |</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -24,6 +24,7 @@
             --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
             --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
             --pix-color: #32bcad;
+            --pix-light: #f0fffe;
         }
 
         * {
@@ -394,106 +395,100 @@
         .modal-content {
             background: white;
             width: 100%;
-            max-width: 400px;
-            border-radius: 24px;
-            padding: 30px;
+            max-width: 420px;
+            border-radius: 28px;
+            padding: 0;
             position: relative;
             transform: translateY(20px);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
         }
 
         .modal-overlay.active .modal-content {
             transform: translateY(0);
         }
 
-        .modal-close-btn {
+        .modal-header-premium {
+            background: linear-gradient(135deg, var(--pix-color) 0%, #2a9d8f 100%);
+            padding: 25px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        .modal-close-btn-premium {
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #f0f2f5;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.2);
             border: none;
-            width: 32px;
-            height: 32px;
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            color: white;
             cursor: pointer;
-            color: var(--text-gray);
-        }
-
-        .modal-icon {
-            width: 64px;
-            height: 64px;
-            background: rgba(50, 188, 173, 0.1);
-            color: var(--pix-color);
-            border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 20px;
         }
 
-        .modal-icon.warning {
-            background: rgba(255, 107, 53, 0.1);
-            color: var(--warning);
+        .modal-body-premium {
+            padding: 30px;
         }
 
-        .modal-icon.success {
-            background: rgba(40, 167, 69, 0.1);
-            color: var(--success);
+        /* ==================== TIMER STYLES ==================== */
+        .timer-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.15);
+            padding: 8px 15px;
+            border-radius: 50px;
+            width: fit-content;
+            margin: 15px auto 0;
+            font-weight: 700;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
-        .modal-title {
-            font-size: 1.4rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 12px;
-            color: var(--text-dark);
+        .timer-container i {
+            animation: blink 1s infinite;
         }
 
-        .modal-text {
-            text-align: center;
-            color: var(--text-gray);
-            margin-bottom: 24px;
-            line-height: 1.5;
+        @keyframes blink {
+            50% { opacity: 0.3; }
         }
 
-        /* ==================== OPTIMIZED PIX COPY BOX ==================== */
-        .pix-copy-container {
-            background: #f0fffe;
-            border: 2px solid var(--pix-color);
+        /* ==================== PIX COPY BOX PREMIUM ==================== */
+        .pix-copy-container-premium {
+            background: var(--pix-light);
+            border: 2px dashed var(--pix-color);
             padding: 20px;
-            border-radius: 16px;
+            border-radius: 20px;
             text-align: center;
-            margin-bottom: 20px;
-            animation: pulse 2s infinite;
+            margin-bottom: 25px;
+            position: relative;
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(50, 188, 173, 0.4); }
-            70% { box-shadow: 0 0 0 10px rgba(50, 188, 173, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(50, 188, 173, 0); }
-        }
-
-        .pix-code-box {
+        .pix-code-box-premium {
             background: white;
-            border: 1px dashed var(--pix-color);
             padding: 15px;
-            border-radius: 10px;
+            border-radius: 12px;
             font-size: 0.85rem;
             word-break: break-all;
             color: var(--text-dark);
             margin-bottom: 15px;
-            font-family: monospace;
-            max-height: 100px;
+            font-family: 'Courier New', Courier, monospace;
+            max-height: 80px;
             overflow-y: auto;
             text-align: left;
+            border: 1px solid #e0e0e0;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        .btn-modal {
+        .btn-copy-premium {
             width: 100%;
             padding: 16px;
             border-radius: 14px;
@@ -501,23 +496,68 @@
             font-size: 1rem;
             cursor: pointer;
             border: none;
-            margin-bottom: 10px;
-            transition: transform 0.2s;
-        }
-
-        .btn-modal:active {
-            transform: scale(0.98);
-        }
-
-        .btn-modal-pix {
             background: var(--pix-color);
             color: white;
-            box-shadow: 0 4px 12px rgba(50, 188, 173, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 20px -5px rgba(50, 188, 173, 0.4);
+            transition: all 0.3s ease;
         }
 
-        .btn-modal-continue {
-            background: #f0f2f5;
+        .btn-copy-premium:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 25px -5px rgba(50, 188, 173, 0.5);
+        }
+
+        .btn-copy-premium:active {
+            transform: translateY(0);
+        }
+
+        /* ==================== TRUST ELEMENTS ==================== */
+        .trust-badges-modal {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .trust-badge-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.65rem;
             color: var(--text-gray);
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+        .trust-badge-item i {
+            font-size: 1.2rem;
+            color: var(--success);
+        }
+
+        .btn-already-paid-premium {
+            width: 100%;
+            padding: 14px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            border: 1px solid #e0e0e0;
+            background: white;
+            color: var(--text-gray);
+            transition: all 0.2s;
+        }
+
+        .btn-already-paid-premium:hover {
+            background: #f8f9fa;
+            color: var(--text-dark);
+            border-color: #ccc;
         }
 
         /* FORM STYLES IN MODAL */
@@ -614,53 +654,78 @@
         </div>
     </div>
 
-    <!-- PIX MODAL (OPTIMIZED) -->
+    <!-- PIX MODAL (PREMIUM DESIGN) -->
     <div class="modal-overlay" id="pix-modal">
         <div class="modal-content">
-            <button class="modal-close-btn" onclick="closePixModal()">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="modal-icon"><i class="fas fa-bolt"></i></div>
-            <h3 class="modal-title">Pagamento Rápido</h3>
-            <p class="modal-text">Copie o código abaixo e cole no aplicativo do seu banco para finalizar.</p>
-            
-            <div class="pix-copy-container">
-                <div class="pix-code-box" id="pix-code-text">Aguardando código...</div>
-                <button class="btn-modal btn-modal-pix" id="btn-copy-pix">
-                    <i class="fas fa-copy"></i> COPIAR CÓDIGO PIX
+            <div class="modal-header-premium">
+                <button class="modal-close-btn-premium" onclick="closePixModal()">
+                    <i class="fas fa-times"></i>
                 </button>
+                <div style="font-size: 2.5rem; margin-bottom: 10px;"><i class="fas fa-bolt"></i></div>
+                <h3 style="font-size: 1.5rem; font-weight: 800;">Pagamento Instantâneo</h3>
+                <div class="timer-container">
+                    <i class="fas fa-clock"></i> Expira em: <span id="pix-timer">15:00</span>
+                </div>
             </div>
             
-            <button class="btn-modal btn-modal-continue" id="btn-already-paid">
-                Já realizei o pagamento
-            </button>
+            <div class="modal-body-premium">
+                <p style="text-align: center; color: var(--text-gray); font-size: 0.95rem; margin-bottom: 25px;">
+                    Copie o código abaixo e utilize a opção <b>"Pix Copia e Cola"</b> no aplicativo do seu banco.
+                </p>
+                
+                <div class="pix-copy-container-premium">
+                    <div class="pix-code-box-premium" id="pix-code-text">Aguardando código...</div>
+                    <button class="btn-copy-premium" id="btn-copy-pix">
+                        <i class="fas fa-copy"></i> COPIAR CÓDIGO PIX
+                    </button>
+                </div>
+
+                <div class="trust-badges-modal">
+                    <div class="trust-badge-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Seguro</span>
+                    </div>
+                    <div class="trust-badge-item">
+                        <i class="fas fa-check-double"></i>
+                        <span>Instantâneo</span>
+                    </div>
+                    <div class="trust-badge-item">
+                        <i class="fas fa-user-shield"></i>
+                        <span>Protegido</span>
+                    </div>
+                </div>
+                
+                <button class="btn-already-paid-premium" id="btn-already-paid">
+                    Já realizei o pagamento
+                </button>
+            </div>
         </div>
     </div>
 
     <!-- DELIVERY MODAL -->
     <div class="modal-overlay" id="delivery-modal">
         <div class="modal-content" id="delivery-modal-content">
-            <button class="modal-close-btn" id="modal-close-btn-delivery">
+            <button class="modal-close-btn" id="modal-close-btn-delivery" style="position: absolute; top: 20px; right: 20px; background: #f0f2f5; border: none; width: 32px; height: 32px; border-radius: 50%; cursor: pointer;">
                 <i class="fas fa-times"></i>
             </button>
             
-            <div id="modal-step-1">
-                <div class="modal-icon warning"><i class="fas fa-exclamation-triangle"></i></div>
-                <h3 class="modal-title">Você tem certeza?</h3>
-                <p class="modal-text" id="delivery-warning-text">Ao escolher o pagamento na entrega, você perde a promoção exclusiva do Pix e pagará o valor integral sem descontos.</p>
-                <div class="modal-buttons">
-                    <button class="btn-modal btn-modal-pix" id="modal-back-to-pix">
+            <div id="modal-step-1" style="padding: 30px;">
+                <div class="modal-icon warning" style="width: 64px; height: 64px; background: rgba(255, 107, 53, 0.1); color: var(--warning); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 20px;"><i class="fas fa-exclamation-triangle"></i></div>
+                <h3 class="modal-title" style="font-size: 1.4rem; font-weight: 800; text-align: center; margin-bottom: 12px;">Você tem certeza?</h3>
+                <p class="modal-text" id="delivery-warning-text" style="text-align: center; color: var(--text-gray); margin-bottom: 24px; line-height: 1.5;">Ao escolher o pagamento na entrega, você perde a promoção exclusiva do Pix e pagará o valor integral sem descontos.</p>
+                <div class="modal-buttons" style="display: flex; flex-direction: column; gap: 10px;">
+                    <button class="btn-modal btn-modal-pix" id="modal-back-to-pix" style="width: 100%; padding: 16px; border-radius: 14px; font-weight: 800; border: none; background: var(--pix-color); color: white;">
                         <i class="fas fa-qrcode"></i> Quero o desconto do Pix
                     </button>
-                    <button class="btn-modal btn-modal-continue" id="modal-continue-delivery">
+                    <button class="btn-modal btn-modal-continue" id="modal-continue-delivery" style="width: 100%; padding: 16px; border-radius: 14px; font-weight: 800; border: none; background: #f0f2f5; color: var(--text-gray);">
                         Continuar sem desconto
                     </button>
                 </div>
             </div>
 
-            <div id="modal-step-2" style="display:none;">
-                <h3 class="modal-title">Dados para Entrega</h3>
-                <p class="modal-text">Preencha seus dados para finalizarmos seu pedido na entrega.</p>
+            <div id="modal-step-2" style="display:none; padding: 30px;">
+                <h3 class="modal-title" style="font-size: 1.4rem; font-weight: 800; text-align: center; margin-bottom: 12px;">Dados para Entrega</h3>
+                <p class="modal-text" style="text-align: center; color: var(--text-gray); margin-bottom: 24px;">Preencha seus dados para finalizarmos seu pedido na entrega.</p>
                 <form class="contact-form" id="delivery-contact-form">
                     <div class="form-group">
                         <label>Nome Completo</label>
@@ -674,15 +739,15 @@
                         <label>CPF</label>
                         <input type="tel" id="delivery-cpf" placeholder="000.000.000-00" maxlength="14" inputmode="numeric" required>
                     </div>
-                    <button type="submit" class="btn-modal btn-send-form">Enviar Pedido</button>
+                    <button type="submit" class="btn-modal btn-send-form" style="width: 100%; padding: 16px; border-radius: 14px; font-weight: 800; border: none; background: var(--primary); color: white;">Enviar Pedido</button>
                 </form>
             </div>
 
-            <div id="modal-step-3" style="display:none;">
-                <div class="modal-icon success"><i class="fas fa-check-circle"></i></div>
-                <h3 class="modal-title">Pedido Recebido!</h3>
-                <p class="modal-text">Obrigado! Recebemos sua solicitação de pagamento na entrega. Em breve entraremos em contato para confirmar os detalhes.</p>
-                <button class="btn-modal btn-modal-continue" id="modal-close-final">Fechar</button>
+            <div id="modal-step-3" style="display:none; padding: 30px;">
+                <div class="modal-icon success" style="width: 64px; height: 64px; background: rgba(40, 167, 69, 0.1); color: var(--success); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; margin: 0 auto 20px;"><i class="fas fa-check-circle"></i></div>
+                <h3 class="modal-title" style="font-size: 1.4rem; font-weight: 800; text-align: center; margin-bottom: 12px;">Pedido Recebido!</h3>
+                <p class="modal-text" style="text-align: center; color: var(--text-gray); margin-bottom: 24px;">Obrigado! Recebemos sua solicitação de pagamento na entrega. Em breve entraremos em contato para confirmar os detalhes.</p>
+                <button class="btn-modal btn-modal-continue" id="modal-close-final" style="width: 100%; padding: 16px; border-radius: 14px; font-weight: 800; border: none; background: #f0f2f5; color: var(--text-gray);">Fechar</button>
             </div>
         </div>
     </div>
@@ -800,6 +865,30 @@
             });
         }
 
+        // Timer Logic
+        let timerInterval;
+        function startPixTimer(durationInSeconds) {
+            clearInterval(timerInterval);
+            let timer = durationInSeconds;
+            const display = document.getElementById('pix-timer');
+            
+            timerInterval = setInterval(() => {
+                let minutes = parseInt(timer / 60, 10);
+                let seconds = parseInt(timer % 60, 10);
+
+                minutes = minutes < 10 ? "0" + minutes : minutes;
+                seconds = seconds < 10 ? "0" + seconds : seconds;
+
+                display.textContent = minutes + ":" + seconds;
+
+                if (--timer < 0) {
+                    clearInterval(timerInterval);
+                    display.textContent = "EXPIRADO";
+                    display.style.color = "var(--danger)";
+                }
+            }, 1000);
+        }
+
         async function generatePix() {
             const name = document.getElementById('pix-name').value;
             const cpf = document.getElementById('pix-cpf').value.replace(/\D/g, '');
@@ -831,6 +920,7 @@
                     const qrCode = data.pix.qrcode || data.pix.qrCode;
                     document.getElementById('pix-code-text').innerText = qrCode;
                     document.getElementById('pix-modal').classList.add('active');
+                    startPixTimer(15 * 60); // Start 15 min timer
                 } else {
                     alert('Erro ao gerar Pix. Verifique os dados.');
                 }
@@ -845,6 +935,7 @@
 
         function closePixModal() {
             document.getElementById('pix-modal').classList.remove('active');
+            clearInterval(timerInterval);
         }
 
         document.getElementById('btn-copy-pix').addEventListener('click', () => {
@@ -853,7 +944,7 @@
                 const btn = document.getElementById('btn-copy-pix');
                 const originalText = btn.innerHTML;
                 btn.innerHTML = '<i class="fas fa-check"></i> CÓDIGO COPIADO!';
-                btn.style.background = '#28a745';
+                btn.style.background = 'var(--success)';
                 setTimeout(() => {
                     btn.innerHTML = originalText;
                     btn.style.background = '';
@@ -862,8 +953,7 @@
         });
 
         document.getElementById('btn-already-paid').addEventListener('click', () => {
-            // REDIRECIONAMENTO APÓS PAGAMENTO
-            window.location.href = 'https://www.exemplo.com'; 
+            window.location.href = 'https://www.example.com'; 
         });
 
         function showDeliveryModal() {
