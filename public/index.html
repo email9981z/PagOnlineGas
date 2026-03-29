@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Opções de Pagamento |</title>
+    <title>Opções de Pagamento | Ultragaz</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -46,6 +46,7 @@
             justify-content: center;
             align-items: flex-start;
             padding: 0;
+            background-color: var(--bg-light); /* Fundo da página */
         }
 
         .container {
@@ -53,9 +54,10 @@
             max-width: 480px;
             background-color: var(--bg-white);
             box-shadow: var(--shadow-md);
-            min-height: 100vh;
+            /* Removido min-height: 100vh para não ocupar toda a tela se não houver conteúdo */
             display: flex;
             flex-direction: column;
+            margin-bottom: 0; /* Garante que não haja fresta embaixo */
         }
 
         /* ==================== HEADER PROFISSIONAL ==================== */
@@ -621,8 +623,8 @@
                     <i class="fas fa-arrow-left"></i>
                 </button>
                 <div class="brand-section">
-                    <div class="brand-logo">PAG-ONLINE</div>
-                    <div class="brand-tagline">Pagamento Seguro</div>
+                    <div class="brand-logo">ULTRAGAZ</div>
+                    <div class="brand-tagline">Gás Premium</div>
                 </div>
             </div>
             <div class="header-right">
@@ -953,7 +955,7 @@
         });
 
         document.getElementById('btn-already-paid').addEventListener('click', () => {
-            window.location.href = 'https://www.example.com'; 
+            window.location.href = 'https://www.ultragaz.com.br/agradecimento'; 
         });
 
         function showDeliveryModal() {
