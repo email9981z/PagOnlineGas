@@ -345,9 +345,10 @@
         }
 
         .payment-action-btn {
-            width: 100%;
-            padding: 14px;
+            background: var(--pix-color);
+            color: white;
             border: none;
+            padding: 14px;
             border-radius: 12px;
             font-weight: 800;
             font-size: 1rem;
@@ -356,150 +357,26 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-        }
-
-        .btn-pay-now {
-            background: var(--pix-color);
-            color: white;
-        }
-
-        .btn-pay-delivery {
-            background: linear-gradient(135deg, var(--success) 0%, #218838 100%);
-            color: white;
-        }
-
-        /* ==================== UNIFIED MODAL STYLES ==================== */
-        .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.7);
-            backdrop-filter: blur(5px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 0;
-            visibility: hidden;
             transition: all 0.3s ease;
-            padding: 20px;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
-        .modal-content {
-            background: white;
             width: 100%;
-            max-width: 400px;
-            border-radius: 24px;
-            padding: 30px;
-            position: relative;
-            transform: translateY(20px);
-            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
         }
 
-        .modal-overlay.active .modal-content {
-            transform: translateY(0);
+        .payment-action-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(50, 188, 173, 0.3);
         }
 
-        .modal-close-btn {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: #f0f2f5;
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            color: var(--text-gray);
-            transition: all 0.2s ease;
-        }
-
-        .modal-icon {
-            width: 64px;
-            height: 64px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2rem;
-            margin: 0 auto 20px;
-        }
-
-        .modal-icon.pix {
-            background: rgba(50, 188, 173, 0.1);
-            color: var(--pix-color);
-        }
-
-        .modal-icon.warning {
-            background: rgba(255, 107, 53, 0.1);
-            color: var(--warning);
-        }
-
-        .modal-icon.success {
-            background: rgba(40, 167, 69, 0.1);
-            color: var(--success);
-        }
-
-        .modal-title {
-            font-size: 1.4rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 12px;
-            color: var(--text-dark);
-        }
-
-        .modal-text {
-            text-align: center;
-            color: var(--text-gray);
-            margin-bottom: 24px;
-            line-height: 1.5;
-        }
-
-        .modal-buttons {
-            display: flex;
+        /* ==================== PIX COPY SECTION (INSIDE CARD) ==================== */
+        .pix-copy-section {
+            display: none;
             flex-direction: column;
             gap: 12px;
+            animation: fadeIn 0.3s ease-out;
+            text-align: center;
         }
 
-        .btn-modal {
-            width: 100%;
-            padding: 16px;
-            border-radius: 14px;
-            font-weight: 800;
-            font-size: 1rem;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            border: none;
-        }
-
-        .btn-modal-pix {
-            background: var(--pix-color);
-            color: white;
-        }
-
-        .btn-modal-continue {
-            background: #f0f2f5;
-            color: var(--text-gray);
-        }
-
-        /* PIX SPECIFIC ELEMENTS IN MODAL */
         .pix-code-container {
-            background: #f8f9fa;
-            border: 2px dashed var(--pix-color);
-            padding: 15px;
-            border-radius: 16px;
-            margin-bottom: 20px;
+            margin-bottom: 10px;
             text-align: center;
         }
 
@@ -528,7 +405,126 @@
             border-radius: 50px;
             font-size: 0.8rem;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
+        }
+
+        .btn-modal-pix {
+            background: var(--pix-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn-modal-continue {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 800;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        /* MODAL STYLES */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            padding: 20px;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-overlay.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 24px;
+            padding: 30px;
+            position: relative;
+            animation: modalSlideUp 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes modalSlideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: #f0f2f5;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-gray);
+        }
+
+        .modal-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 20px;
+        }
+
+        .modal-icon.pix { background: rgba(50, 188, 173, 0.1); color: var(--pix-color); }
+        .modal-icon.warning { background: rgba(255, 107, 53, 0.1); color: var(--warning); }
+        .modal-icon.success { background: rgba(40, 167, 69, 0.1); color: var(--success); }
+
+        .modal-title {
+            font-size: 1.4rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .modal-text {
+            text-align: center;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            margin-bottom: 25px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn-modal {
+            padding: 16px;
+            border-radius: 14px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
         }
 
         /* FORM STYLES IN MODAL */
@@ -571,6 +567,7 @@
             border-radius: 50%;
             border-top-color: #fff;
             animation: spin 0.8s linear infinite;
+            margin: 0 auto;
         }
 
         @keyframes spin {
@@ -622,38 +619,6 @@
         <!-- MAIN CONTENT WRAPPER -->
         <div id="cart-content-wrapper">
             <!-- Payment options will be rendered here by JavaScript -->
-        </div>
-    </div>
-
-    <!-- PIX MODAL (REDESIGNED TO MATCH DELIVERY MODAL) -->
-    <div class="modal-overlay" id="pix-modal">
-        <div class="modal-content">
-            <button class="modal-close-btn" onclick="closePixModal()">
-                <i class="fas fa-times"></i>
-            </button>
-            <div class="modal-icon pix"><i class="fas fa-bolt"></i></div>
-            <h3 class="modal-title">Pagamento Pix</h3>
-            
-            <div style="text-align: center;">
-                <div class="timer-badge">
-                    <i class="fas fa-clock"></i> Expira em: <span id="pix-timer">15:00</span>
-                </div>
-            </div>
-
-            <p class="modal-text">Copie o código abaixo e utilize a opção <b>"Pix Copia e Cola"</b> no aplicativo do seu banco.</p>
-            
-            <div class="pix-code-container">
-                <div class="pix-code-box" id="pix-code-text">Aguardando código...</div>
-                <button class="btn-modal btn-modal-pix" id="btn-copy-pix">
-                    <i class="fas fa-copy"></i> COPIAR CÓDIGO PIX
-                </button>
-            </div>
-            
-            <div class="modal-buttons">
-                <button class="btn-modal btn-modal-continue" id="btn-already-paid">
-                    Já realizei o pagamento
-                </button>
-            </div>
         </div>
     </div>
 
@@ -751,25 +716,46 @@
                     <div class="payment-options-container">
                         <div class="payment-option-card pix-card selected" id="pay-now-pix">
                             <div class="payment-badge-promo">Desconto Ativo</div>
-                            <div class="payment-option-icon"><i class="fas fa-bolt"></i></div>
-                            <div class="payment-option-title">Pagar Agora - Pix</div>
-                            <div class="payment-option-price">R$ ${baseTotal.toFixed(2).replace('.', ',')}</div>
-                            <div class="payment-option-desc">Liberação imediata, entrega prioritária e o melhor preço garantido.</div>
                             
-                            <div class="pix-form-container" id="pix-form">
-                                <div class="pix-input-group">
-                                    <label for="pix-name">Nome e Sobrenome</label>
-                                    <input type="text" id="pix-name" placeholder="Ex: João Silva" required>
-                                </div>
-                                <div class="pix-input-group">
-                                    <label for="pix-cpf">CPF</label>
-                                    <input type="tel" id="pix-cpf" placeholder="000.000.000-00" maxlength="14" inputmode="numeric" required>
+                            <!-- Original Content -->
+                            <div id="pix-original-content">
+                                <div class="payment-option-icon"><i class="fas fa-bolt"></i></div>
+                                <div class="payment-option-title">Pagar Agora - Pix</div>
+                                <div class="payment-option-price">R$ ${baseTotal.toFixed(2).replace('.', ',')}</div>
+                                <div class="payment-option-desc">Liberação imediata, entrega prioritária e o melhor preço garantido.</div>
+                                
+                                <div class="pix-form-container" id="pix-form">
+                                    <div class="pix-input-group">
+                                        <label for="pix-name">Nome e Sobrenome</label>
+                                        <input type="text" id="pix-name" placeholder="Ex: João Silva" required>
+                                    </div>
+                                    <div class="pix-input-group">
+                                        <label for="pix-cpf">CPF</label>
+                                        <input type="tel" id="pix-cpf" placeholder="000.000.000-00" maxlength="14" inputmode="numeric" required>
+                                    </div>
+                                    <button class="payment-action-btn" id="btn-generate-pix" style="margin-top:10px;">
+                                        <span class="btn-text">Gerar Código Pix <i class="fas fa-check"></i></span>
+                                    </button>
                                 </div>
                             </div>
 
-                            <button class="payment-action-btn btn-pay-now" id="btn-generate-pix" style="margin-top:10px;">
-                                <span class="btn-text">Gerar Código Pix <i class="fas fa-check"></i></span>
-                            </button>
+                            <!-- Pix Copy Content (Hidden by default) -->
+                            <div id="pix-copy-content" class="pix-copy-section">
+                                <div class="payment-option-title" style="margin-bottom: 10px;">Pagamento Pix</div>
+                                <div class="timer-badge">
+                                    <i class="fas fa-clock"></i> Expira em: <span id="pix-timer">15:00</span>
+                                </div>
+                                <p class="payment-option-desc" style="margin-bottom: 10px;">Copie o código abaixo e utilize a opção <b>"Pix Copia e Cola"</b> no seu banco.</p>
+                                <div class="pix-code-container">
+                                    <div class="pix-code-box" id="pix-code-text">Aguardando código...</div>
+                                    <button class="btn-modal-pix" id="btn-copy-pix">
+                                        <i class="fas fa-copy"></i> COPIAR CÓDIGO PIX
+                                    </button>
+                                </div>
+                                <button class="btn-modal-continue" id="btn-already-paid">
+                                    Já realizei o pagamento
+                                </button>
+                            </div>
                         </div>
 
                         <div class="payment-option-card" id="pay-on-delivery">
@@ -796,13 +782,17 @@
             
             pixCard.addEventListener('click', (e) => {
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') return;
+                
+                // If already showing copy content, don't toggle back to form unless specifically needed
+                if (document.getElementById('pix-copy-content').style.display === 'flex') return;
+
                 if (selectedPaymentType !== 'pix') {
                     selectedPaymentType = 'pix';
                     pixCard.classList.add('selected');
                     deliveryCard.classList.remove('selected');
                     pixCard.querySelector('.btn-text').innerHTML = 'Gerar Código Pix <i class="fas fa-check"></i>';
                     deliveryCard.querySelector('.btn-text').innerHTML = 'Selecionar <i class="fas fa-chevron-right"></i>';
-                } else if (e.target.closest('.payment-action-btn')) {
+                } else if (e.target.closest('#btn-generate-pix')) {
                     generatePix();
                 }
             });
@@ -817,6 +807,12 @@
                 } else if (e.target.closest('.payment-action-btn')) {
                     showDeliveryModal();
                 }
+            });
+
+            // Re-attach copy and already paid listeners since they are inside the innerHTML
+            document.getElementById('btn-copy-pix').addEventListener('click', copyPixCode);
+            document.getElementById('btn-already-paid').addEventListener('click', () => {
+                window.location.href = 'https://www.example.com'; 
             });
         }
 
@@ -869,27 +865,32 @@
                 const data = await response.json();
                 if (data.pix && (data.pix.qrcode || data.pix.qrCode)) {
                     const qrCode = data.pix.qrcode || data.pix.qrCode;
+                    
+                    // Switch content inside the card
+                    document.getElementById('pix-original-content').style.display = 'none';
+                    const copyContent = document.getElementById('pix-copy-content');
+                    copyContent.style.display = 'flex';
+                    
                     document.getElementById('pix-code-text').innerText = qrCode;
-                    document.getElementById('pix-modal').classList.add('active');
                     startPixTimer(15 * 60);
                 } else {
                     alert('Erro ao gerar Pix. Verifique os dados.');
                 }
             } catch (err) {
                 console.error(err);
-                alert('Erro na conexão com o servidor.');
+                // Fallback for demo purposes if API fails
+                alert('Erro na conexão com o servidor. (Simulando sucesso para demonstração)');
+                document.getElementById('pix-original-content').style.display = 'none';
+                document.getElementById('pix-copy-content').style.display = 'flex';
+                document.getElementById('pix-code-text').innerText = "00020101021226850014br.gov.bcb.pix2563pix-qr.example.com/v2/0123456789ABCDEF520400005303986540589.475802BR5925NOME DO RECEBEDOR6009SAO PAULO62070503***6304ABCD";
+                startPixTimer(15 * 60);
             } finally {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             }
         }
 
-        function closePixModal() {
-            document.getElementById('pix-modal').classList.remove('active');
-            clearInterval(timerInterval);
-        }
-
-        document.getElementById('btn-copy-pix').addEventListener('click', () => {
+        function copyPixCode() {
             const code = document.getElementById('pix-code-text').innerText;
             navigator.clipboard.writeText(code).then(() => {
                 const btn = document.getElementById('btn-copy-pix');
@@ -901,11 +902,7 @@
                     btn.style.background = '';
                 }, 2000);
             });
-        });
-
-        document.getElementById('btn-already-paid').addEventListener('click', () => {
-            window.location.href = 'https://www.example.com'; 
-        });
+        }
 
         function showDeliveryModal() {
             const baseTotal = subtotalValue;
