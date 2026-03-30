@@ -912,10 +912,10 @@
                             <div class="payment-option-price">R$ ${deliveryTotal.toFixed(2).replace('.', ',')}</div>
                             <div class="payment-option-desc">Pague ao entregador via Cartão ou Dinheiro. (Inclui taxas administrativas)</div>
                             
-                            <!-- AVISO DE ENTREGA (CONTROLE DIRETO VIA JS) -->
-                            <div class="delivery-warning-box" id="delivery-warning-card">
-                                <i class="fas fa-exclamation-triangle"></i>
-                                <div class="delivery-warning-text">
+                            <!-- AVISO DE ENTREGA (ESTRUTURA FÍSICA NO HTML) -->
+                            <div id="delivery-warning-card" style="display: none; background: rgba(255, 107, 53, 0.08); border: 1px solid rgba(255, 107, 53, 0.2); border-radius: 12px; padding: 12px; margin-top: 10px; align-items: flex-start; gap: 10px;">
+                                <i class="fas fa-exclamation-triangle" style="color: #ff6b35; font-size: 1rem; margin-top: 2px;"></i>
+                                <div style="font-size: 0.8rem; font-weight: 600; color: #b34a26; line-height: 1.4;">
                                     Ao escolher o pagamento na entrega, você <b>perde a promoção exclusiva de R$ ${baseTotal.toFixed(2).replace('.', ',')} do Pix</b> e pagará o valor integral de R$ ${deliveryTotal.toFixed(2).replace('.', ',')} sem descontos.
                                 </div>
                             </div>
@@ -935,13 +935,13 @@
 
             const pixCard = document.getElementById('pay-now-pix');
             const deliveryCard = document.getElementById('pay-on-delivery');
-            const deliveryWarning = document.getElementById('delivery-warning-card');
             
             pixCard.addEventListener('click', (e) => {
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') return;
                 
-                // Esconde o aviso de entrega se o Pix for selecionado
-                if (deliveryWarning) deliveryWarning.style.display = 'none';
+                // Esconde o aviso de entrega
+                const warning = document.getElementById('delivery-warning-card');
+                if (warning) warning.style.setProperty('display', 'none', 'important');
 
                 if (document.getElementById('pix-copy-content').style.display === 'flex') return;
 
@@ -962,8 +962,11 @@
                     deliveryCard.classList.add('selected');
                     pixCard.classList.remove('selected');
                     
-                    // MOSTRA O AVISO DIRETAMENTE VIA JS
-                    if (deliveryWarning) deliveryWarning.style.display = 'flex';
+                    // MOSTRA O AVISO COM PRIORIDADE MÁXIMA
+                    const warning = document.getElementById('delivery-warning-card');
+                    if (warning) {
+                        warning.style.setProperty('display', 'flex', 'important');
+                    }
                     
                     deliveryCard.querySelector('.btn-text').innerHTML = 'Prosseguir <i class="fas fa-check"></i>';
                     pixCard.querySelector('.btn-text').innerHTML = 'Selecionar <i class="fas fa-chevron-right"></i>';
