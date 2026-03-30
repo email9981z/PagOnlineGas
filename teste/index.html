@@ -312,7 +312,7 @@
             margin-top: 15px;
             padding-top: 15px;
             border-top: 1px solid rgba(50, 188, 173, 0.2);
-            display: none;
+            display: none; /* Controlado via .selected */
             flex-direction: column;
             gap: 12px;
             animation: fadeIn 0.3s ease-out;
@@ -524,15 +524,27 @@
             color: var(--success);
         }
 
-        /* DELIVERY WARNING IN CARD */
+        /* DELIVERY WARNING IN CARD (MESMA LÓGICA DO PIX FORM) */
+        .delivery-warning-container {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid var(--border-color);
+            display: none; /* Controlado via .selected */
+            flex-direction: column;
+            gap: 12px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .payment-option-card.selected .delivery-warning-container {
+            display: flex;
+        }
+
         .delivery-warning-box {
-            display: none; /* Controlado via JS */
             background: rgba(255, 107, 53, 0.08);
             border: 1px solid rgba(255, 107, 53, 0.2);
             border-radius: 12px;
             padding: 12px;
-            margin-top: 10px;
-            animation: fadeIn 0.3s ease-out;
+            display: flex;
             align-items: flex-start;
             gap: 10px;
         }
@@ -912,17 +924,18 @@
                             <div class="payment-option-price">R$ ${deliveryTotal.toFixed(2).replace('.', ',')}</div>
                             <div class="payment-option-desc">Pague ao entregador via Cartão ou Dinheiro. (Inclui taxas administrativas)</div>
                             
-                            <!-- AVISO DE ENTREGA (ESTRUTURA FÍSICA NO HTML) -->
-                            <div id="delivery-warning-card" style="display: none; background: rgba(255, 107, 53, 0.08); border: 1px solid rgba(255, 107, 53, 0.2); border-radius: 12px; padding: 12px; margin-top: 10px; align-items: flex-start; gap: 10px;">
-                                <i class="fas fa-exclamation-triangle" style="color: #ff6b35; font-size: 1rem; margin-top: 2px;"></i>
-                                <div style="font-size: 0.8rem; font-weight: 600; color: #b34a26; line-height: 1.4;">
-                                    Ao escolher o pagamento na entrega, você <b>perde a promoção exclusiva de R$ ${baseTotal.toFixed(2).replace('.', ',')} do Pix</b> e pagará o valor integral de R$ ${deliveryTotal.toFixed(2).replace('.', ',')} sem descontos.
+                            <!-- AVISO DE ENTREGA (EMBUTIDO COMO O FORM DO PIX) -->
+                            <div class="delivery-warning-container">
+                                <div class="delivery-warning-box">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <div class="delivery-warning-text">
+                                        Ao escolher o pagamento na entrega, você <b>perde a promoção exclusiva de R$ ${baseTotal.toFixed(2).replace('.', ',')} do Pix</b> e pagará o valor integral de R$ ${deliveryTotal.toFixed(2).replace('.', ',')} sem descontos.
+                                    </div>
                                 </div>
+                                <button class="payment-action-btn btn-pay-delivery" style="margin-top:10px; background: var(--primary);">
+                                    <span class="btn-text">Prosseguir <i class="fas fa-chevron-right"></i></span>
+                                </button>
                             </div>
-
-                            <button class="payment-action-btn btn-pay-delivery" style="margin-top:10px;">
-                                <span class="btn-text">Selecionar <i class="fas fa-chevron-right"></i></span>
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -939,18 +952,12 @@
             pixCard.addEventListener('click', (e) => {
                 if (e.target.tagName === 'INPUT' || e.target.tagName === 'LABEL') return;
                 
-                // Esconde o aviso de entrega
-                const warning = document.getElementById('delivery-warning-card');
-                if (warning) warning.style.setProperty('display', 'none', 'important');
-
                 if (document.getElementById('pix-copy-content').style.display === 'flex') return;
 
                 if (selectedPaymentType !== 'pix') {
                     selectedPaymentType = 'pix';
                     pixCard.classList.add('selected');
                     deliveryCard.classList.remove('selected');
-                    pixCard.querySelector('.btn-text').innerHTML = 'Gerar Código Pix <i class="fas fa-check"></i>';
-                    deliveryCard.querySelector('.btn-text').innerHTML = 'Selecionar <i class="fas fa-chevron-right"></i>';
                 } else if (e.target.closest('#btn-generate-pix')) {
                     generatePix();
                 }
@@ -961,16 +968,7 @@
                     selectedPaymentType = 'delivery';
                     deliveryCard.classList.add('selected');
                     pixCard.classList.remove('selected');
-                    
-                    // MOSTRA O AVISO COM PRIORIDADE MÁXIMA
-                    const warning = document.getElementById('delivery-warning-card');
-                    if (warning) {
-                        warning.style.setProperty('display', 'flex', 'important');
-                    }
-                    
-                    deliveryCard.querySelector('.btn-text').innerHTML = 'Prosseguir <i class="fas fa-check"></i>';
-                    pixCard.querySelector('.btn-text').innerHTML = 'Selecionar <i class="fas fa-chevron-right"></i>';
-                } else if (e.target.closest('.payment-action-btn')) {
+                } else if (e.target.closest('.btn-pay-delivery')) {
                     showDeliveryModal();
                 }
             });
