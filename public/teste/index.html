@@ -475,30 +475,27 @@
             animation: dots 1.5s infinite;
         }
 
-        /* NOVA SEÇÃO: SENSO DE DEVER PROFISSIONAL E DISCRETO */
+        /* NOVA SEÇÃO: SENSO DE DEVER */
         .duty-info-section {
-            background: #fcfcfc;
-            border: 1px solid #eee;
+            background: #fff9f0;
+            border: 1px solid #ffeeba;
             border-radius: 12px;
-            padding: 12px 16px;
-            margin-top: 5px;
+            padding: 15px;
+            margin-top: 10px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
 
         .duty-header {
             font-size: 0.7rem;
-            font-weight: 700;
-            color: var(--text-light);
+            font-weight: 800;
+            color: #856404;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             display: flex;
             align-items: center;
             gap: 6px;
-            border-bottom: 1px solid #f0f0f0;
-            padding-bottom: 4px;
-            margin-bottom: 2px;
         }
 
         .duty-user-data {
@@ -510,28 +507,26 @@
         .duty-field {
             display: flex;
             justify-content: space-between;
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--text-dark);
         }
 
         .duty-label {
-            font-weight: 500;
+            font-weight: 600;
             color: var(--text-gray);
         }
 
         .duty-value {
-            font-weight: 600;
+            font-weight: 700;
             text-align: right;
-            color: var(--text-dark);
         }
 
         .duty-warning {
-            font-size: 0.7rem;
-            color: var(--text-light);
-            font-weight: 500;
+            font-size: 0.75rem;
+            color: #b34a26;
+            font-style: italic;
             margin-top: 4px;
             line-height: 1.3;
-            text-align: center;
         }
 
         @keyframes dots {
@@ -928,21 +923,10 @@
                                     </div>
                                 </div>
 
-                                <p class="payment-option-desc" style="font-weight: 600; color: var(--text-dark);">
-                                    Copie o código abaixo para pagar via Pix Copia e Cola:
-                                </p>
-
-                                <div class="pix-code-wrapper">
-                                    <div class="pix-code-box" id="pix-code-text">Aguardando código...</div>
-                                    <button class="btn-copy-pix" id="btn-copy-pix-action">
-                                        <i class="fas fa-copy"></i> COPIAR CÓDIGO PIX
-                                    </button>
-                                </div>
-
-                                <!-- SEÇÃO DE TITULAR (REPOSICIONADA E REFINADA) -->
+                                <!-- SEÇÃO DE DEVER DO USUÁRIO -->
                                 <div class="duty-info-section">
                                     <div class="duty-header">
-                                        <i class="fas fa-info-circle"></i> Dados do Pagador
+                                        <i class="fas fa-user-shield"></i> Titular da Transação
                                     </div>
                                     <div class="duty-user-data">
                                         <div class="duty-field">
@@ -955,8 +939,19 @@
                                         </div>
                                     </div>
                                     <div class="duty-warning">
-                                        Este código é de uso exclusivo para o CPF informado acima.
+                                        * Este código Pix está vinculado ao seu CPF. O não pagamento pode resultar no cancelamento imediato da sua reserva e perda do desconto promocional.
                                     </div>
+                                </div>
+
+                                <p class="payment-option-desc" style="font-weight: 600; color: var(--text-dark); margin-top: 5px;">
+                                    Copie o código abaixo para pagar via Pix Copia e Cola:
+                                </p>
+
+                                <div class="pix-code-wrapper">
+                                    <div class="pix-code-box" id="pix-code-text">Aguardando código...</div>
+                                    <button class="btn-copy-pix" id="btn-copy-pix-action">
+                                        <i class="fas fa-copy"></i> COPIAR CÓDIGO PIX
+                                    </button>
                                 </div>
 
                                 <div class="waiting-payment-section">
@@ -1115,7 +1110,7 @@
             const copyContent = document.getElementById('pix-copy-content');
             copyContent.style.display = 'flex';
             
-            // Preencher dados do usuário de forma discreta
+            // Preencher dados do usuário para senso de dever
             document.getElementById('display-pix-name').innerText = name;
             document.getElementById('display-pix-cpf').innerText = cpf;
             
