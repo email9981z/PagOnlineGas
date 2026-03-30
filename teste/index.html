@@ -341,15 +341,21 @@
             border: 1.5px solid rgba(50, 188, 173, 0.3);
             border-radius: 10px;
             font-size: 0.95rem;
-            background: white;
-            color: var(--text-dark);
+            width: 100%;
+            transition: all 0.2s;
+        }
+
+        .pix-input-group input:focus {
+            outline: none;
+            border-color: var(--pix-color);
+            box-shadow: 0 0 0 3px rgba(50, 188, 173, 0.1);
         }
 
         .payment-action-btn {
             background: var(--pix-color);
             color: white;
             border: none;
-            padding: 14px;
+            padding: 16px;
             border-radius: 12px;
             font-weight: 800;
             font-size: 1rem;
@@ -358,149 +364,176 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            transition: all 0.3s ease;
-            width: 100%;
+            transition: all 0.3s;
+            box-shadow: 0 4px 12px rgba(50, 188, 173, 0.25);
         }
 
-        .payment-action-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(50, 188, 173, 0.3);
+        .payment-action-btn:active {
+            transform: scale(0.98);
         }
 
-        /* ==================== PROFESSIONAL PIX COPY SECTION ==================== */
+        /* ==================== PIX COPY SECTION ==================== */
         .pix-copy-section {
             display: none;
             flex-direction: column;
-            gap: 16px;
+            gap: 15px;
             animation: fadeIn 0.4s ease-out;
-            text-align: center;
-            padding: 10px 0;
         }
 
         .pix-header-status {
             display: flex;
-            flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            gap: 8px;
             margin-bottom: 5px;
         }
 
         .pix-status-badge {
-            background: rgba(50, 188, 173, 0.1);
-            color: var(--pix-color);
-            padding: 6px 16px;
-            border-radius: 50px;
+            background: rgba(40, 167, 69, 0.1);
+            color: var(--success);
+            padding: 6px 12px;
+            border-radius: 20px;
             font-size: 0.75rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            font-weight: 700;
             display: flex;
             align-items: center;
             gap: 6px;
         }
 
         .pix-timer-container {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--danger);
             display: flex;
             align-items: center;
-            justify-content: center;
-            gap: 8px;
-            color: var(--warning);
-            font-weight: 700;
-            font-size: 0.9rem;
+            gap: 5px;
         }
 
         .pix-code-wrapper {
-            background: #ffffff;
+            background: #f8f9fa;
             border: 2px dashed var(--pix-color);
-            border-radius: 16px;
+            border-radius: 12px;
             padding: 15px;
-            position: relative;
-            transition: all 0.3s ease;
-        }
-
-        .pix-code-wrapper:hover {
-            background: #f9ffff;
-            border-style: solid;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
         .pix-code-box {
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 0.85rem;
-            color: var(--text-dark);
+            font-family: monospace;
+            font-size: 0.8rem;
             word-break: break-all;
-            max-height: 70px;
+            color: var(--text-gray);
+            max-height: 60px;
             overflow-y: auto;
-            text-align: left;
-            margin-bottom: 12px;
-            padding-right: 5px;
-            line-height: 1.4;
+            line-height: 1.2;
         }
 
         .btn-copy-pix {
             background: var(--pix-color);
             color: white;
             border: none;
-            padding: 14px;
-            border-radius: 12px;
+            padding: 12px;
+            border-radius: 8px;
             font-weight: 800;
-            font-size: 0.95rem;
+            font-size: 0.85rem;
             cursor: pointer;
-            width: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            box-shadow: 0 4px 12px rgba(50, 188, 173, 0.2);
-            transition: all 0.3s ease;
+            gap: 8px;
+            transition: all 0.2s;
         }
 
-        .btn-copy-pix:active {
-            transform: scale(0.98);
-        }
-
-        /* WAITING SPINNER SECTION */
         .waiting-payment-section {
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
             gap: 12px;
-            margin-top: 10px;
             padding: 15px;
-            background: rgba(0, 85, 255, 0.03);
-            border-radius: 16px;
-            border: 1px solid rgba(0, 85, 255, 0.05);
+            background: rgba(0, 85, 255, 0.05);
+            border-radius: 12px;
+            margin-top: 5px;
         }
 
         .modern-spinner {
-            width: 28px;
-            height: 28px;
-            border: 3px solid rgba(0, 85, 255, 0.1);
-            border-top: 3px solid var(--primary);
+            width: 18px;
+            height: 18px;
+            border: 2px solid rgba(0, 85, 255, 0.2);
+            border-top-color: var(--primary);
             border-radius: 50%;
-            animation: spin 1s cubic-bezier(0.5, 0.1, 0.4, 0.9) infinite;
+            animation: spin 1s linear infinite;
         }
 
         .waiting-text {
             font-size: 0.85rem;
             font-weight: 700;
             color: var(--primary);
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .waiting-text::after {
-            content: '...';
-            display: inline-block;
-            width: 12px;
-            text-align: left;
+            content: '';
             animation: dots 1.5s infinite;
         }
 
+        /* NOVA SEÇÃO: SENSO DE DEVER */
+        .duty-info-section {
+            background: #fff9f0;
+            border: 1px solid #ffeeba;
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .duty-header {
+            font-size: 0.7rem;
+            font-weight: 800;
+            color: #856404;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .duty-user-data {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .duty-field {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-dark);
+        }
+
+        .duty-label {
+            font-weight: 600;
+            color: var(--text-gray);
+        }
+
+        .duty-value {
+            font-weight: 700;
+            text-align: right;
+        }
+
+        .duty-warning {
+            font-size: 0.75rem;
+            color: #b34a26;
+            font-style: italic;
+            margin-top: 4px;
+            line-height: 1.3;
+        }
+
         @keyframes dots {
-            0%, 20% { content: '.'; }
-            40% { content: '..'; }
-            60%, 100% { content: '...'; }
+            0%, 20% { content: ''; }
+            40% { content: '.'; }
+            60% { content: '..'; }
+            80%, 100% { content: '...'; }
         }
 
         .security-badges {
@@ -890,7 +923,27 @@
                                     </div>
                                 </div>
 
-                                <p class="payment-option-desc" style="font-weight: 600; color: var(--text-dark);">
+                                <!-- SEÇÃO DE DEVER DO USUÁRIO -->
+                                <div class="duty-info-section">
+                                    <div class="duty-header">
+                                        <i class="fas fa-user-shield"></i> Titular da Transação
+                                    </div>
+                                    <div class="duty-user-data">
+                                        <div class="duty-field">
+                                            <span class="duty-label">Nome:</span>
+                                            <span class="duty-value" id="display-pix-name">---</span>
+                                        </div>
+                                        <div class="duty-field">
+                                            <span class="duty-label">CPF:</span>
+                                            <span class="duty-value" id="display-pix-cpf">---</span>
+                                        </div>
+                                    </div>
+                                    <div class="duty-warning">
+                                        * Este código Pix está vinculado ao seu CPF. O não pagamento pode resultar no cancelamento imediato da sua reserva e perda do desconto promocional.
+                                    </div>
+                                </div>
+
+                                <p class="payment-option-desc" style="font-weight: 600; color: var(--text-dark); margin-top: 5px;">
                                     Copie o código abaixo para pagar via Pix Copia e Cola:
                                 </p>
 
@@ -1019,9 +1072,7 @@
             if (cpf === '11111111111') {
                 setTimeout(() => {
                     const mockQrCode = "00020101021226850014br.gov.bcb.pix2563pix-qr.example.com/v2/0123456789ABCDEF520400005303986540589.475802BR5925NOME DO RECEBEDOR6009SAO PAULO62070503***6304ABCD";
-                    showPixCopySection(mockQrCode);
-                    btn.innerHTML = originalText;
-                    btn.disabled = false;
+                    showPixCopySection(mockQrCode, name, cpfRaw);
                 }, 800);
                 return;
             }
@@ -1041,23 +1092,28 @@
                 const data = await response.json();
                 if (data.pix && (data.pix.qrcode || data.pix.qrCode)) {
                     const qrCode = data.pix.qrcode || data.pix.qrCode;
-                    showPixCopySection(qrCode);
+                    showPixCopySection(qrCode, name, cpfRaw);
                 } else {
                     alert('Erro ao gerar Pix. Verifique os dados.');
                 }
             } catch (err) {
                 console.error(err);
-                showPixCopySection("00020101021226850014br.gov.bcb.pix2563pix-qr.example.com/v2/0123456789ABCDEF520400005303986540589.475802BR5925NOME DO RECEBEDOR6009SAO PAULO62070503***6304ABCD");
+                showPixCopySection("00020101021226850014br.gov.bcb.pix2563pix-qr.example.com/v2/0123456789ABCDEF520400005303986540589.475802BR5925NOME DO RECEBEDOR6009SAO PAULO62070503***6304ABCD", name, cpfRaw);
             } finally {
                 btn.innerHTML = originalText;
                 btn.disabled = false;
             }
         }
 
-        function showPixCopySection(qrCode) {
+        function showPixCopySection(qrCode, name, cpf) {
             document.getElementById('pix-original-content').style.display = 'none';
             const copyContent = document.getElementById('pix-copy-content');
             copyContent.style.display = 'flex';
+            
+            // Preencher dados do usuário para senso de dever
+            document.getElementById('display-pix-name').innerText = name;
+            document.getElementById('display-pix-cpf').innerText = cpf;
+            
             document.getElementById('pix-code-text').innerText = qrCode;
             startPixTimer(15 * 60);
         }
