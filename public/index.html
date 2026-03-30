@@ -524,6 +524,36 @@
             color: var(--success);
         }
 
+        /* DELIVERY WARNING IN CARD */
+        .delivery-warning-box {
+            display: none;
+            background: rgba(255, 107, 53, 0.08);
+            border: 1px solid rgba(255, 107, 53, 0.2);
+            border-radius: 12px;
+            padding: 12px;
+            margin-top: 10px;
+            animation: fadeIn 0.3s ease-out;
+        }
+
+        .payment-option-card.selected .delivery-warning-box {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+        }
+
+        .delivery-warning-box i {
+            color: var(--warning);
+            font-size: 1rem;
+            margin-top: 2px;
+        }
+
+        .delivery-warning-text {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #b34a26;
+            line-height: 1.4;
+        }
+
         /* MODAL STYLES */
         .modal-overlay {
             position: fixed;
@@ -885,6 +915,14 @@
                             <div class="payment-option-title">Pagar na Entrega</div>
                             <div class="payment-option-price">R$ ${deliveryTotal.toFixed(2).replace('.', ',')}</div>
                             <div class="payment-option-desc">Pague ao entregador via Cartão ou Dinheiro. (Inclui taxas administrativas)</div>
+                            
+                            <div class="delivery-warning-box">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                <div class="delivery-warning-text">
+                                    Ao escolher o pagamento na entrega, você <b>perde a promoção exclusiva de R$ ${baseTotal.toFixed(2).replace('.', ',')} do Pix</b> e pagará o valor integral de R$ ${deliveryTotal.toFixed(2).replace('.', ',')} sem descontos.
+                                </div>
+                            </div>
+
                             <button class="payment-action-btn btn-pay-delivery" style="margin-top:10px;">
                                 <span class="btn-text">Selecionar <i class="fas fa-chevron-right"></i></span>
                             </button>
